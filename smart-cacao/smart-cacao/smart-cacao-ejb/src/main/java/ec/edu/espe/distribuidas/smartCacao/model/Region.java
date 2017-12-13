@@ -1,0 +1,100 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ec.edu.espe.distribuidas.smartCacao.model;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+/**
+ *
+ * @author TMET
+ */
+@Entity
+@Table(name = "REGION")
+public class Region implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "COD_REGION", length = 10, nullable = false)
+    private String codigo;
+
+    @Column(name = "NOMBRE", length = 100, nullable = false)
+    private String nombre;
+
+    @JoinColumns({
+        @JoinColumn(name = "COD_ESTACION", referencedColumnName = "COD_ESTACION")
+        , @JoinColumn(name = "COD_MES", referencedColumnName = "COD_MES")})
+    @ManyToOne
+    private Estacion estacion;
+
+    public Region() {
+    }
+
+    public Region(String codRegion) {
+        this.codigo = codRegion;
+    }
+
+    public Region(String codRegion, String nombre) {
+        this.codigo = codRegion;
+        this.nombre = nombre;
+    }
+
+    public String getCodRegion() {
+        return codigo;
+    }
+
+    public void setCodRegion(String codRegion) {
+        this.codigo = codRegion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Estacion getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(Estacion estacion) {
+        this.estacion = estacion;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Region)) {
+            return false;
+        }
+        Region other = (Region) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ec.edu.espe.distribuidas.smartCacao.model.Region[ codRegion=" + codigo + " ]";
+    }
+}
