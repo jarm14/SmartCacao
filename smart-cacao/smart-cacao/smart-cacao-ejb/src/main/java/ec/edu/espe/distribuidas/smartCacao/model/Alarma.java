@@ -49,11 +49,11 @@ public class Alarma implements Serializable {
         this.codigo = codAlarma;
     }
 
-    public Integer getCodAlarma() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodAlarma(Integer codAlarma) {
+    public void setCodigo(Integer codAlarma) {
         this.codigo = codAlarma;
     }
 

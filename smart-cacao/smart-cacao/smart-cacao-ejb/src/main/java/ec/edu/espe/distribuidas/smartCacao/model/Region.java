@@ -51,11 +51,11 @@ public class Region implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCodRegion() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodRegion(String codRegion) {
+    public void setCodigo(String codRegion) {
         this.codigo = codRegion;
     }
 

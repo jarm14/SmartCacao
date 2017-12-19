@@ -8,6 +8,7 @@
 package ec.edu.espe.distribuidas.smartCacao.dao;
 
 import ec.edu.espe.distribuidas.smartCacao.model.TipoUsuario;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +18,7 @@ import javax.persistence.PersistenceContext;
  * @author TMET
  */
 @Stateless
+@LocalBean
 public class TipoUsuarioFacade extends AbstractFacade<TipoUsuario> {
 
     @PersistenceContext(unitName = "ec.edu.espe.distribuidas.smartCacao_smart-cacao-ejb_ejb_1PU")

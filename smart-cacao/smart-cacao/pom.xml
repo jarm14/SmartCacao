@@ -11,4 +11,8 @@
     <module>smart-cacao-web</module>
     <module>smart-cacao-ejb</module>
   </modules>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 </project>

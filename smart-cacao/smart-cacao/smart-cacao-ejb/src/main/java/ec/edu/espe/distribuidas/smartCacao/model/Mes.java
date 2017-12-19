@@ -45,11 +45,11 @@ public class Mes implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getCodMes() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodMes(Integer codMes) {
+    public void setCodigo(Integer codMes) {
         this.codigo = codMes;
     }
 

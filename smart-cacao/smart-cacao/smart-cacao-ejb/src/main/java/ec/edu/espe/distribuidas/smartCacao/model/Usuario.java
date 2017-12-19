@@ -66,11 +66,11 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public Integer getCodUsuario() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodUsuario(Integer codUsuario) {
+    public void setCodigo(Integer codUsuario) {
         this.codigo = codUsuario;
     }
 

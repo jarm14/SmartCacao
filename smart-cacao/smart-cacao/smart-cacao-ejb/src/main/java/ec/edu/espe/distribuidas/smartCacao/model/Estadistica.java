@@ -69,11 +69,11 @@ public class Estadistica implements Serializable {
         this.totalKilos = totalKilos;
     }
 
-    public Integer getCodEstadistica() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodEstadistica(Integer codEstadistica) {
+    public void setCodigo(Integer codEstadistica) {
         this.codigo = codEstadistica;
     }
 

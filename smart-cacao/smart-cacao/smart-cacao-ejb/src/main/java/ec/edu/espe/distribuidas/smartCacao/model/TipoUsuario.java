@@ -52,11 +52,11 @@ public class TipoUsuario implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Integer getCodTipoUsuario() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodTipoUsuario(Integer codTipoUsuario) {
+    public void setCodigo(Integer codTipoUsuario) {
         this.codigo = codTipoUsuario;
     }
 

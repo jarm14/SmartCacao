@@ -45,11 +45,11 @@ public class TipoActividad implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCodTipoActividad() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodTipoActividad(String codTipoActividad) {
+    public void setCodigo(String codTipoActividad) {
         this.codigo = codTipoActividad;
     }
 

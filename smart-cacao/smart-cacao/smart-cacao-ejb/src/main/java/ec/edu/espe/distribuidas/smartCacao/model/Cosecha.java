@@ -58,11 +58,11 @@ public class Cosecha implements Serializable {
         this.fechaPlantacion = fechaPlantacion;
     }
 
-    public Integer getCodCosecha() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodCosecha(Integer codCosecha) {
+    public void setCodigo(Integer codCosecha) {
         this.codigo = codCosecha;
     }
 

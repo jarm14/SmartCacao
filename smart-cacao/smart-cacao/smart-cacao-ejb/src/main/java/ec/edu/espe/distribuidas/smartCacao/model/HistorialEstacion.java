@@ -68,11 +68,11 @@ public class HistorialEstacion implements Serializable {
         this.fechaFinalizacion = fechaFinalizacion;
     }
 
-    public Integer getCodHistorialEstacion() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodHistorialEstacion(Integer codHistorialEstacion) {
+    public void setCodigo(Integer codHistorialEstacion) {
         this.codigo = codHistorialEstacion;
     }
 

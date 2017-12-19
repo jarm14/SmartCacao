@@ -46,11 +46,11 @@ public class TipoTerreno implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getCodTipoTerreno() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodTipoTerreno(String codTipoTerreno) {
+    public void setCodigo(String codTipoTerreno) {
         this.codigo = codTipoTerreno;
     }
 

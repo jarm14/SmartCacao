@@ -9,6 +9,7 @@ package ec.edu.espe.distribuidas.smartCacao.dao;
 
 import ec.edu.espe.distribuidas.smartCacao.model.Alarma;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import javax.persistence.Query;
  * @author TMET
  */
 @Stateless
+@LocalBean
 public class AlarmaFacade extends AbstractFacade<Alarma> {
 
     @PersistenceContext(unitName = "ec.edu.espe.distribuidas.smartCacao_smart-cacao-ejb_ejb_1PU")

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel header="Tipo Actividad" style="width: 50%; margin: auto;">
+                <p:dataTable var="tipoActividad" value="#{tipoActividadBean.tiposActividad}">
+                    <p:column headerText="Codigo">
+                        <h:outputText value="#{tipoActividad.codigo}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{tipoActividad.nombre}" />
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{tipoActividad.descripcion}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Agregar" actionListener="#{tipoActividadBean.agregar()}" update="@form"/>
+                <p:panel header="Agregar Tipo Actividadn" visible="#{tipoActividadBean.enAgregar}">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="codigo" value="Codigo" />
+                        <p:inputText id="codigo" value="#{tipoActividadBean.tipoActividad.codigo}"/>
+                        <p:outputLabel for="nombre" value="Nombre" />
+                        <p:inputText id="nombre" value="#{tipoActividadBean.tipoActividad.nombre}"/>
+                        <p:outputLabel for="descripcion" value="Descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoActividadBean.tipoActividad.descripcion}"/>                        
+                    </p:panelGrid>
+                    <p:commandButton value="Aceptar" actionListener="#{tipoActividadBean.guardar}" update="@form" />
+                    <p:commandButton value="Cancelar" actionListener="#{tipoActividadBean.cancelar}" update="@form" />
+                </p:panel>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
