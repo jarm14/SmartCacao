@@ -5,17 +5,37 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      >
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>SMART CACAO</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="#{facesContext.externalContext.requestContextPath}/images/styles.css" rel="stylesheet"/>
+        
+        <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+
+        <p:menuitem style="margin-right: 10px">
+                <h:graphicImage value="/images/banner.png" style="margin-right:10px; position: relative;" width="200px" height="70px"/>
+        </p:menuitem>
+        
+        
+        <p:menuitem  style="margin-right:10px" value="Home" icon="ui-icon-home"/>
+        <p:menuitem  style="margin-right:10px" value="Contact" icon="ui-icon-contact"/>
+        
+    </p:menubar>
+</h:form>
+        
+      
     </h:head>
+    
+    
     <h:body> 
+        
         <div id="page">
             <div class="header">
-                <img src="#{facesContext.externalContext.requestContextPath}/images/banner.png" class="img_banner" />
             </div>
+            
             <div id="content">
                 <h:form>
                     <p:growl id="growl" showDetail="true" life="3000"  />
@@ -25,19 +45,22 @@
                     <p>&nbsp;</p>
                 </h:form>
             </div>
-            <div id="footer">
-                
-                    <a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a>
-                    <a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a>
-                    <a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a>
-                    <a href="#" class="icon circle fa-github"><span class="label">Github</span></a>
-                
-                
-                    &copy;Smart Cacao <br/>Universidad de las Fuerzas Armadas ESPE
-                    Tutor: Henry Ramiro Coral Coral <br/>NRC:2434
-               
-            </div>
         </div>
+        
+       
+        
+         <p:toolbar id="tb">
+             
+             <f:facet name="left">
+                 <center><h4>&copy;Smart Cacao <br/>Universidad de las Fuerzas Armadas ESPE
+                         Tutor: Henry Ramiro Coral Coral <br/>NRC: 2434</h4></center>
+             </f:facet>
+        </p:toolbar>
 
+        <div style="height:800px"></div>
+
+        <p:sticky target="tb" />
+       
     </h:body>
+    
 </html>
