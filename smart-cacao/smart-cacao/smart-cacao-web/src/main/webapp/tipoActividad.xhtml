@@ -34,11 +34,11 @@ and open the template in the editor.
                 </p:commandButton>
                 <p:panel header="#{tipoActividadBean.titulo} Tipo Actividad" visible="#{tipoActividadBean.habilitaForm}">
                     <p:panelGrid columns="2">
-                        <p:outputLabel for="codigo" value="Codigo" />
+                        <p:outputLabel for="codigo" value="C&#243;digo" />
                         <p:inputText id="codigo" value="#{tipoActividadBean.tipoActividad.codigo}" disabled="#{tipoActividadBean.enModificar}"/>
                         <p:outputLabel for="nombre" value="Nombre" />
                         <p:inputText id="nombre" value="#{tipoActividadBean.tipoActividad.nombre}"/>
-                        <p:outputLabel for="descripcion" value="Descripcion" />
+                        <p:outputLabel for="descripcion" value="Descripci&#243;n" />
                         <p:inputText id="descripcion" value="#{tipoActividadBean.tipoActividad.descripcion}"/>                        
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{tipoActividadBean.guardar}" update="@form" />
