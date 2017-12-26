@@ -13,7 +13,10 @@ and open the template in the editor.
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
             <p:panel header="Tipo Actividad" style="width: 50%; margin: auto;">
-                <p:dataTable var="tipoActividad" value="#{tipoActividadBean.tiposActividad}">
+                <p:dataTable var="tipoActividad" value="#{tipoActividadBean.tiposActividad}"
+                             selectionMode="single" selection="#{tipoActividadBean.tipoActividadSel}" rowKey="#{tipoActividad.codigo}">
+                    <p:ajax event="rowSelect" update="@form" />
+                    <p:ajax event="rowUnselect" update="@form" />
                     <p:column headerText="Codigo">
                         <h:outputText value="#{tipoActividad.codigo}" />
                     </p:column>
@@ -25,10 +28,14 @@ and open the template in the editor.
                     </p:column>
                 </p:dataTable>
                 <p:commandButton value="Agregar" actionListener="#{tipoActividadBean.agregar()}" update="@form"/>
-                <p:panel header="Agregar Tipo Actividadn" visible="#{tipoActividadBean.enAgregar}">
+                <p:commandButton value="Modificar" actionListener="#{tipoActividadBean.modificar()}" update="@form" disabled="#{tipoActividadBean.tipoActividadSel eq null}"/>
+                <p:commandButton value="Eliminar" actionListener="#{tipoActividadBean.eliminar()}" update="@form" disabled="#{tipoActividadBean.tipoActividadSel eq null}" >
+                    <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el tipo de Valor: #{tipoActividadBean.tipoActividadSel.nombre}}" icon="ui-icon-alert" />
+                </p:commandButton>
+                <p:panel header="#{tipoActividadBean.titulo} Tipo Actividad" visible="#{tipoActividadBean.habilitaForm}">
                     <p:panelGrid columns="2">
                         <p:outputLabel for="codigo" value="Codigo" />
-                        <p:inputText id="codigo" value="#{tipoActividadBean.tipoActividad.codigo}"/>
+                        <p:inputText id="codigo" value="#{tipoActividadBean.tipoActividad.codigo}" disabled="#{tipoActividadBean.enModificar}"/>
                         <p:outputLabel for="nombre" value="Nombre" />
                         <p:inputText id="nombre" value="#{tipoActividadBean.tipoActividad.nombre}"/>
                         <p:outputLabel for="descripcion" value="Descripcion" />
@@ -38,6 +45,10 @@ and open the template in the editor.
                     <p:commandButton value="Cancelar" actionListener="#{tipoActividadBean.cancelar}" update="@form" />
                 </p:panel>
             </p:panel>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
         </ui:define>
     </ui:composition>
 </html>

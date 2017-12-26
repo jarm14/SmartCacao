@@ -7,6 +7,7 @@ package ec.edu.espe.distribuidas.smartCacao.web;
 
 import ec.edu.espe.distribuidas.smartCacao.model.TipoActividad;
 import ec.edu.espe.distribuidas.smartCacao.service.TipoActividadService;
+import ec.edu.espe.distribuidas.smartCacao.web.util.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,11 +21,11 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class TipoActividadBean implements Serializable {
+public class TipoActividadBean extends BaseBean implements Serializable {
 
     private List<TipoActividad> tiposActividad;
     private TipoActividad tipoActividad;
-    private boolean enAgregar;
+    private TipoActividad tipoActividadSel;
 
     @Inject
     private TipoActividadService tipoActividadService;
@@ -35,19 +36,53 @@ public class TipoActividadBean implements Serializable {
         this.tipoActividad = new TipoActividad();
     }
 
+    @Override
     public void agregar() {
         this.tipoActividad = new TipoActividad();
-        this.enAgregar = true;
+        super.agregar();
     }
 
     public void cancelar() {
-        this.enAgregar = false;
+        super.reset();
+        this.tipoActividad = new TipoActividad();
+    }
+
+    @Override
+    public void modificar() {
+        super.modificar();
+        this.tipoActividad = new TipoActividad();
+        this.tipoActividad.setCodigo(this.tipoActividadSel.getCodigo());
+        this.tipoActividad.setNombre(this.tipoActividadSel.getNombre());
+        this.tipoActividad.setDescripcion(this.tipoActividadSel.getDescripcion());
+    }
+
+    public void eliminar() {
+        try {
+            this.tipoActividadService.eliminar(this.tipoActividadSel.getCodigo());
+            this.tiposActividad = this.tipoActividadService.obtenerTodos();
+            FacesUtil.addMessageInfo("Se elimino el registro");
+            this.tipoActividadSel = null;
+        } catch (Exception e) {
+            FacesUtil.addMessageError(null, "No se puede eliminar el registro seleccionado. Verifique que no tenga informaci\u00f3n relacionada.");
+        }
     }
 
     public void guardar() {
-        this.tipoActividadService.crear(tipoActividad);
-        this.enAgregar = false;
-        this.tiposActividad = this.tipoActividadService.obtenerTodos();
+        try {
+            if (this.enAgregar) {
+                this.tipoActividadService.crear(this.tipoActividad);
+                FacesUtil.addMessageInfo("Se agrego el Tipo de Actividad: " + this.tipoActividad.getNombre());
+            } else {
+                this.tipoActividadService.modificar(tipoActividad);
+                FacesUtil.addMessageInfo("Se modific\u00f3 el Tipo de Actividad con c\u00f3digo: " + this.tipoActividad.getCodigo());
+            }
+        } catch (Exception e) {
+            FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
+        }
+        
+       super.reset();
+       this.tipoActividad = new TipoActividad();
+       this.tiposActividad = this.tipoActividadService.obtenerTodos();
     }
 
     public List<TipoActividad> getTiposActividad() {
@@ -62,7 +97,11 @@ public class TipoActividadBean implements Serializable {
         this.tipoActividad = tipoActividad;
     }
 
-    public boolean isEnAgregar() {
-        return enAgregar;
+    public TipoActividad getTipoActividadSel() {
+        return tipoActividadSel;
+    }
+
+    public void setTipoActividadSel(TipoActividad tipoActividadSel) {
+        this.tipoActividadSel = tipoActividadSel;
     }
 }
