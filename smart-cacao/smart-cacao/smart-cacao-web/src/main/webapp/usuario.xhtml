@@ -36,7 +36,7 @@ and open the template in the editor.
                 <p:commandButton value="Eliminar" actionListener="#{usuarioBean.eliminar()}" update="@form" disabled="#{usuarioBean.usuarioSel eq null}" >
                     <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el Usuario: #{usuarioBean.usuarioSel.nombre}}" icon="ui-icon-alert" />
                 </p:commandButton>
-                <p:panel header="#{usuarioBean.titulo} Tipo Actividad" visible="#{usuarioBean.habilitaForm}">
+                <p:panel header="#{usuarioBean.titulo} Tipo Usuario" visible="#{usuarioBean.habilitaForm}">
                     <p:panelGrid columns="2">
                         <p:outputLabel for="codigo" value="C&#243;digo" />
                         <p:inputText id="codigo" value="#{usuarioBean.usuario.codigo}" disabled="true"/>

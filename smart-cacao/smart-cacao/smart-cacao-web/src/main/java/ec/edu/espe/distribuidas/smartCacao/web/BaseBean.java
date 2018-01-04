@@ -15,12 +15,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class BaseBean {
-    
+
     protected boolean enAgregar;
     protected boolean enModificar;
     protected boolean enDetalles;
     protected String titulo;
-    
+
     public boolean isEnAgregar() {
         return enAgregar;
     }
@@ -36,29 +36,28 @@ public class BaseBean {
     public String getTitulo() {
         return titulo;
     }
-    
-    public void agregar()
-    {
+
+    public void agregar() {
         this.enAgregar = true;
-        this.titulo="Agregar";
+        this.titulo = "Agregar";
     }
-    
-    public void modificar(){
+
+    public void modificar() {
         this.enModificar = true;
         this.titulo = "Modificar ";
     }
-    
+
     public void detalles() {
         this.enDetalles = true;
         this.titulo = "Detalles - ";
     }
-    
+
     public void reset() {
         this.enAgregar = false;
         this.enModificar = false;
         this.enDetalles = false;
     }
-    
+
     public boolean isHabilitaForm() {
         return this.enAgregar || this.enDetalles || this.enModificar;
     }

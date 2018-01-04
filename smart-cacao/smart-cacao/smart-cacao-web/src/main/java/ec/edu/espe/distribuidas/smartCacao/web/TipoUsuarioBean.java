@@ -23,7 +23,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class TipoUsuarioBean extends BaseBean implements Serializable{
+public class TipoUsuarioBean extends BaseBean implements Serializable {
 
     private List<TipoUsuario> tiposUsuario;
     private TipoUsuario tipoUsuario;
@@ -81,10 +81,10 @@ public class TipoUsuarioBean extends BaseBean implements Serializable{
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
         }
-        
-       super.reset();
-       this.tipoUsuario = new TipoUsuario();
-       this.tiposUsuario = this.tipoUsuarioService.obtenerTodos();
+
+        super.reset();
+        this.tipoUsuario = new TipoUsuario();
+        this.tiposUsuario = this.tipoUsuarioService.obtenerTodos();
     }
 
     public List<TipoUsuario> getTiposUsuario() {

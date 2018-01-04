@@ -30,7 +30,7 @@ and open the template in the editor.
                 <p:commandButton value="Agregar" actionListener="#{tipoActividadBean.agregar()}" update="@form"/>
                 <p:commandButton value="Modificar" actionListener="#{tipoActividadBean.modificar()}" update="@form" disabled="#{tipoActividadBean.tipoActividadSel eq null}"/>
                 <p:commandButton value="Eliminar" actionListener="#{tipoActividadBean.eliminar()}" update="@form" disabled="#{tipoActividadBean.tipoActividadSel eq null}" >
-                    <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el tipo de Valor: #{tipoActividadBean.tipoActividadSel.nombre}}" icon="ui-icon-alert" />
+                    <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el Tipo de Actividad: #{tipoActividadBean.tipoActividadSel.nombre}}" icon="ui-icon-alert" />
                 </p:commandButton>
                 <p:panel header="#{tipoActividadBean.titulo} Tipo Actividad" visible="#{tipoActividadBean.habilitaForm}">
                     <p:panelGrid columns="2">
