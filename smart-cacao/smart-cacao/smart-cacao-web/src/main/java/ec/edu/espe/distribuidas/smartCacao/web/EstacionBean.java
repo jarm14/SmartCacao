@@ -64,7 +64,6 @@ public class EstacionBean extends BaseBean implements Serializable {
         this.estacionPK = estacion.getEstacionPK();
         this.estacion.setNombre(this.estacionSel.getNombre());
         this.estacion.setDescripcion(this.estacionSel.getDescripcion());
-        this.estacion.setMes(this.mes);
     }
 
     public void eliminar() {
@@ -82,6 +81,7 @@ public class EstacionBean extends BaseBean implements Serializable {
         super.reset();
         this.estacion = new Estacion();
         this.mes = new Mes();
+        this.estacionPK = new EstacionPK();
     }
 
     public void guardar() {
@@ -112,7 +112,7 @@ public class EstacionBean extends BaseBean implements Serializable {
         Integer index = 0;
         for (int i = 0; i < meses.size(); i++) {
             aux = meses.get(i);
-            if (aux.getCodigo() == estacion.getMes().getCodigo()) {
+            if (aux.getCodigo() == estacion.getEstacionPK().getCodMes()) {
                 index = i;
             }
         }

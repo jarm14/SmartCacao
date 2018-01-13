@@ -11,8 +11,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,10 +31,6 @@ public class Estacion implements Serializable {
 
     @Column(name = "DESCRIPCION", length = 512)
     private String descripcion;
-
-    @JoinColumn(name = "COD_MES", referencedColumnName = "COD_MES", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Mes mes;
 
     public Estacion() {
     }
@@ -76,14 +70,6 @@ public class Estacion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Mes getMes() {
-        return mes;
-    }
-
-    public void setMes(Mes mes) {
-        this.mes = mes;
     }
 
     @Override
