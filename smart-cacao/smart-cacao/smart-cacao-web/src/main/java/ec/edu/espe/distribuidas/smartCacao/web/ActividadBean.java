@@ -9,8 +9,10 @@ package ec.edu.espe.distribuidas.smartCacao.web;
 
 import ec.edu.espe.distribuidas.smartCacao.model.Actividad;
 import ec.edu.espe.distribuidas.smartCacao.model.ActividadPK;
+import ec.edu.espe.distribuidas.smartCacao.model.Cosecha;
 import ec.edu.espe.distribuidas.smartCacao.model.TipoActividad;
 import ec.edu.espe.distribuidas.smartCacao.service.ActividadService;
+import ec.edu.espe.distribuidas.smartCacao.service.CosechaService;
 import ec.edu.espe.distribuidas.smartCacao.service.TipoActividadService;
 import ec.edu.espe.distribuidas.smartCacao.web.util.FacesUtil;
 import java.io.Serializable;
@@ -34,6 +36,8 @@ public class ActividadBean extends BaseBean implements Serializable {
     private TipoActividad tipoActividad;
     private List<TipoActividad> tiposActividad;
     private ActividadPK actividadPK;
+    private List<Cosecha> cosechas;
+    private Cosecha cosecha;
     
     @Inject
     private ActividadService actividadService;
@@ -41,13 +45,16 @@ public class ActividadBean extends BaseBean implements Serializable {
     @Inject
     private TipoActividadService tipoActividadService;
     
+    @Inject CosechaService cosechaService;
+    
     @PostConstruct
     public void init() {
         this.actividades = this.actividadService.obtenerTodos();
         this.actividad = new Actividad();
         this.tipoActividad = new TipoActividad();
         this.tiposActividad = this.tipoActividadService.obtenerTodos();
-        
+        this.cosecha = new Cosecha();
+        this.cosechas = this.cosechaService.obtenerTodos();
     }
     
     @Override
@@ -56,6 +63,8 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.tipoActividad = new TipoActividad();
         this.tiposActividad = this.tipoActividadService.obtenerTodos();
         this.actividadPK = new ActividadPK();
+        this.cosecha = new Cosecha();
+        this.cosechas = this.cosechaService.obtenerTodos();
         super.agregar();
     }
     
@@ -63,6 +72,7 @@ public class ActividadBean extends BaseBean implements Serializable {
         super.reset();
         this.actividad = new Actividad();
         this.tipoActividad = new TipoActividad();
+        this.cosechas = this.cosechaService.obtenerTodos();
         this.actividadPK = new ActividadPK();
     }
     
@@ -72,6 +82,8 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.actividadPK = new ActividadPK();
         this.tipoActividad = new TipoActividad();
         this.tiposActividad = this.tipoActividadService.obtenerTodos();
+        this.cosecha = new Cosecha();
+        this.cosechas = this.cosechaService.obtenerTodos();
         this.actividad.setActividadPK(this.actividadSel.getActividadPK());
         this.actividad.setCodCosecha(this.actividadSel.getCodCosecha());
         this.actividad.setNota(this.actividadSel.getNota());
@@ -92,10 +104,29 @@ public class ActividadBean extends BaseBean implements Serializable {
     
     public void guardar() {
         try {
+            this.actividad.setActividadPK(actividadPK);
+            
+            if (this.enAgregar) {
+                this.actividadService.crear(this.actividad);
+                FacesUtil.addMessageInfo("Se agrego la Actividad: " + getActividadNombre(this.actividad));
+            } else {
+                this.actividadService.modificar(this.actividad);
+                FacesUtil.addMessageInfo("Se modific\u00f3 la Actividad con c\u00f3digo: " + this.actividad.getActividadPK().getCodActividad());
+            }
             
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
         }
+        
+        super.reset();
+        this.actividad = new Actividad();
+        this.actividadPK = new ActividadPK();
+        this.tipoActividad = new TipoActividad();
+        this.cosecha = new Cosecha();
+        this.actividades = this.actividadService.obtenerTodos();
+        this.tiposActividad = this.tipoActividadService.obtenerTodos();
+        this.cosechas = this.cosechaService.obtenerTodos();
+        
     }
     
     public String getActividadNombre(Actividad actividad) {
@@ -148,6 +179,18 @@ public class ActividadBean extends BaseBean implements Serializable {
 
     public void setActividadPK(ActividadPK actividadPK) {
         this.actividadPK = actividadPK;
+    }
+
+    public List<Cosecha> getCosechas() {
+        return cosechas;
+    }
+
+    public Cosecha getCosecha() {
+        return cosecha;
+    }
+
+    public void setCosecha(Cosecha cosecha) {
+        this.cosecha = cosecha;
     }
 
     

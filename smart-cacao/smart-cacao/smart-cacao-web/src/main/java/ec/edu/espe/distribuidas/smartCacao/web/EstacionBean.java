@@ -92,7 +92,7 @@ public class EstacionBean extends BaseBean implements Serializable {
                 this.estacionService.crear(this.estacion);
                 FacesUtil.addMessageInfo("Se agrego la Estacion: " + this.estacion.getNombre());
             } else {
-                this.estacionService.modificar(estacion);
+                this.estacionService.modificar(this.estacion);
                 FacesUtil.addMessageInfo("Se modific\u00f3 el Usuario con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
             }
         } catch (Exception e) {

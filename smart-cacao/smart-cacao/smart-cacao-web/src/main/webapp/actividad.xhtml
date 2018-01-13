@@ -50,11 +50,13 @@ and open the template in the editor.
                         <p:selectOneMenu id="tipoActividadCmb" value="#{actividadBean.actividadPK.codTipoActividad}" style="width:175px">
                             <f:selectItems var="tipoActividad" value="#{actividadBean.tiposActividad}" itemLabel="#{tipoActividad.nombre}" itemValue="#{tipoActividad.codigo}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel for="codCosecha" value="Codigo Cosecha" />
-                        <p:inputText id="codCosecha" value="#{actividadBean.actividad.codCosecha}"/>
+                        <p:outputLabel for="codCosechaCmb" value="Codigo Cosecha" />
+                        <p:selectOneMenu id="codCosechaCmb" value="#{actividadBean.actividad.codCosecha}" style="width:175px">
+                            <f:selectItems var="cosecha" value="#{actividadBean.cosechas}" itemLabel="#{cosecha.fechaPlantacion}" itemValue="#{cosecha.codigo}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel for="fecha" value="Fecha Ultima Ejecucion" />
                         <p:inputText id="fecha" value="#{actividadBean.actividad.fechaUltimaEjecucion}"/>
-                        <p:outputLabel for="estado" value="estado" />
+                        <p:outputLabel for="estado" value="Estado" />
                         <p:inputText id="estado" value="#{actividadBean.actividad.estado}" />
                         <p:outputLabel for="nota" value="Nota" />
                         <p:inputText id="nota" value="#{actividadBean.actividad.nota}"/>
