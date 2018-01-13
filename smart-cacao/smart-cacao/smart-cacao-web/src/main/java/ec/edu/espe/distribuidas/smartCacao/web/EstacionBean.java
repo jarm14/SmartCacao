@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.smartCacao.web;
 
 import ec.edu.espe.distribuidas.smartCacao.model.Estacion;
+import ec.edu.espe.distribuidas.smartCacao.model.EstacionPK;
 import ec.edu.espe.distribuidas.smartCacao.model.Mes;
 import ec.edu.espe.distribuidas.smartCacao.service.EstacionService;
 import ec.edu.espe.distribuidas.smartCacao.service.MesService;
@@ -23,20 +24,21 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class EstacionBean extends BaseBean implements Serializable{
-    
+public class EstacionBean extends BaseBean implements Serializable {
+
     private List<Mes> meses;
     private Mes mes;
     private List<Estacion> estaciones;
     private Estacion estacion;
     private Estacion estacionSel;
-    
+    private EstacionPK estacionPK;
+
     @Inject
     private MesService mesService;
-    
+
     @Inject
     private EstacionService estacionService;
-    
+
     @PostConstruct
     public void init() {
         this.estaciones = this.estacionService.obtenerTodos();
@@ -44,28 +46,25 @@ public class EstacionBean extends BaseBean implements Serializable{
         this.meses = this.mesService.obtenerTodos();
         this.mes = new Mes();
     }
-    
+
+    @Override
+    public void agregar() {
+        this.estacionPK = new EstacionPK();
+        this.estacion = new Estacion();
+        this.mes = new Mes();
+        this.meses = this.mesService.obtenerTodos();
+        super.agregar();
+    }
+
     @Override
     public void modificar() {
         super.modificar();
-        this.tipoUsuario = new TipoUsuario();
-        this.tiposUsuario = this.tipoUsuarioService.obtenerTodos();
-        this.listaTipoU = new ArrayList<>();
-        TipoUsuario aux = new TipoUsuario();
-
-        for (int i = 0; i < tiposUsuario.size(); i++) {
-            aux = tiposUsuario.get(i);
-            listaTipoU.add(aux.getDescripcion());
-        }
-
-        this.usuario = new Usuario();
-        this.usuario.setCodigo(this.usuarioSel.getCodigo());
-        this.usuario.setCodTipoUsuario(this.usuarioSel.getCodTipoUsuario());
-        this.usuario.setNombre(this.usuarioSel.getNombre());
-        this.usuario.setApellido(this.usuarioSel.getApellido());
-        this.usuario.setPassword(this.usuarioSel.getPassword());
-        this.usuario.setTelefono(this.usuarioSel.getTelefono());
-        this.usuario.setEmail(this.usuarioSel.getEmail());
+        this.estacion = new Estacion();
+        this.estacion.setEstacionPK(this.estacionSel.getEstacionPK());
+        this.estacionPK = estacion.getEstacionPK();
+        this.estacion.setNombre(this.estacionSel.getNombre());
+        this.estacion.setDescripcion(this.estacionSel.getDescripcion());
+        this.estacion.setMes(this.mes);
     }
 
     public void eliminar() {
@@ -79,25 +78,84 @@ public class EstacionBean extends BaseBean implements Serializable{
         }
     }
 
+    public void cancelar() {
+        super.reset();
+        this.estacion = new Estacion();
+        this.mes = new Mes();
+    }
+
     public void guardar() {
         try {
-            this.usuario.setCodTipoUsuario(tiposUsuario.get(getIdTipoU(this.tipoUsuario.getDescripcion())));
+            this.estacion.setEstacionPK(estacionPK);
 
             if (this.enAgregar) {
-                this.usuarioService.crear(this.usuario);
-                FacesUtil.addMessageInfo("Se agrego el Usuario: " + this.usuario.getNombre());
+                this.estacionService.crear(this.estacion);
+                FacesUtil.addMessageInfo("Se agrego la Estacion: " + this.estacion.getNombre());
             } else {
-                this.usuarioService.modificar(usuario);
-                FacesUtil.addMessageInfo("Se modific\u00f3 el Usuario con c\u00f3digo: " + this.usuario.getCodigo());
+                this.estacionService.modificar(estacion);
+                FacesUtil.addMessageInfo("Se modific\u00f3 el Usuario con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
             }
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
         }
 
         super.reset();
-        this.usuario = new Usuario();
-        this.tipoUsuario = new TipoUsuario();
-        this.tiposUsuario = this.tipoUsuarioService.obtenerTodos();
-        this.usuarios = this.usuarioService.obtenerTodos();
+        this.estacion = new Estacion();
+        this.estacionPK = new EstacionPK();
+        this.mes = new Mes();
+        this.meses = this.mesService.obtenerTodos();
+        this.estaciones = this.estacionService.obtenerTodos();
+    }
+
+    public Integer getIndex(Estacion estacion) {
+        Mes aux = new Mes();
+        Integer index = 0;
+        for (int i = 0; i < meses.size(); i++) {
+            aux = meses.get(i);
+            if (aux.getCodigo() == estacion.getMes().getCodigo()) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public List<Mes> getMeses() {
+        return meses;
+    }
+
+    public List<Estacion> getEstaciones() {
+        return estaciones;
+    }
+
+    public Mes getMes() {
+        return mes;
+    }
+
+    public void setMes(Mes mes) {
+        this.mes = mes;
+    }
+
+    public Estacion getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(Estacion estacion) {
+        this.estacion = estacion;
+    }
+
+    public Estacion getEstacionSel() {
+        return estacionSel;
+    }
+
+    public void setEstacionSel(Estacion estacionSel) {
+        this.estacionSel = estacionSel;
+    }
+
+    public EstacionPK getEstacionPK() {
+        return estacionPK;
+    }
+
+    public void setEstacionPK(EstacionPK estacionPK) {
+        this.estacionPK = estacionPK;
     }
 }
