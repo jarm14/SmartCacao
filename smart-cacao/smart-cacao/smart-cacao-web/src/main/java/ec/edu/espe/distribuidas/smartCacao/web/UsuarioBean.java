@@ -32,7 +32,7 @@ public class UsuarioBean extends BaseBean implements Serializable {
     private TipoUsuario tipoUsuario;
     private List<Usuario> usuarios;
     private Usuario usuario;
-    private Usuario usuarioSel;
+    private Usuario usuarioSel; 
     private Integer index;
     private ArrayList<String> listaTipoU;
 

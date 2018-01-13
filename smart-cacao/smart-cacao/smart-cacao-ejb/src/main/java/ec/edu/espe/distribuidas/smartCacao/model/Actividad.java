@@ -48,9 +48,8 @@ public class Actividad implements Serializable {
     @OneToMany(mappedBy = "actividad")
     private List<Alarma> alarmaList;
     
-    @JoinColumn(name = "COD_COSECHA", referencedColumnName = "COD_COSECHA")
-    @ManyToOne
-    private Cosecha codCosecha;
+    @Column(name = "COD_COSECHA")
+    private Integer codCosecha;
     
     @JoinColumn(name = "COD_TIPO_ACTIVIDAD", referencedColumnName = "COD_TIPO_ACTIVIDAD", insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -113,11 +112,11 @@ public class Actividad implements Serializable {
         this.alarmaList = alarmaList;
     }
 
-    public Cosecha getCodCosecha() {
+    public Integer getCodCosecha() {
         return codCosecha;
     }
 
-    public void setCodCosecha(Cosecha codCosecha) {
+    public void setCodCosecha(Integer codCosecha) {
         this.codCosecha = codCosecha;
     }
 
