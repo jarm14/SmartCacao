@@ -33,7 +33,7 @@ and open the template in the editor.
                 <p:commandButton value="Agregar" actionListener="#{estacionBean.agregar()}" update="@form"/>
                 <p:commandButton value="Modificar" actionListener="#{estacionBean.modificar()}" update="@form" disabled="#{estacionBean.estacionSel eq null}"/>
                 <p:commandButton value="Eliminar" actionListener="#{estacionBean.eliminar()}" update="@form" disabled="#{estacionBean.estacionSel eq null}" >
-                    <p:confirm header="Confirmaci&#243;n" message="Desea eliminar la Esstaci&#243;n: #{estacionBean.estacionSel.nombre}}" icon="ui-icon-alert" />
+                    <p:confirm header="Confirmaci&#243;n" message="Desea eliminar la Esstaci&#243;n: #{estacionBean.estacionSel.nombre}" icon="ui-icon-alert" />
                 </p:commandButton>
                 <p:panel header="#{estacionBean.titulo} Estaci&#243;n" rendered="#{estacionBean.habilitaForm}">
                     <p:panelGrid columns="2">
