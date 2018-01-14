@@ -94,16 +94,9 @@ public class EstacionBean extends BaseBean implements Serializable {
                 this.estacionService.crear(this.estacion);
                 FacesUtil.addMessageInfo("Se agrego la Estacion: " + this.estacion.getNombre());
             } else {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-                this.estacionService.modificar(estacion);
-                FacesUtil.addMessageInfo("Se modific\u00f3 la Estacion con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
-=======
->>>>>>> Stashed changes
+
                 this.estacionService.modificar(this.estacion);
                 FacesUtil.addMessageInfo("Se modific\u00f3 el Usuario con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
->>>>>>> origin/master
             }
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
