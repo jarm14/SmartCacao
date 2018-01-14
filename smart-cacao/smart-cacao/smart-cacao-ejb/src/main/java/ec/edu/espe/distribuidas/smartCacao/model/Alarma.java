@@ -13,9 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,11 +33,11 @@ public class Alarma implements Serializable {
     @Column(name = "DESCRIPCION", length = 512)
     private String descripcion;
 
-    @JoinColumns({
-        @JoinColumn(name = "COD_ACTIVIDAD", referencedColumnName = "COD_ACTIVIDAD")
-        , @JoinColumn(name = "COD_TIPO_ACTIVIDAD", referencedColumnName = "COD_TIPO_ACTIVIDAD")})
-    @ManyToOne
-    private Actividad actividad;
+    @Column(name = "COD_ACTIVIDAD")
+    private Integer codActividad;
+    
+    @Column(name = "COD_TIPO_ACTIVIDAD", length = 10)
+    private String codTipoActividad;
 
     public Alarma() {
     }
@@ -65,12 +62,20 @@ public class Alarma implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Actividad getActividad() {
-        return actividad;
+    public Integer getCodActividad() {
+        return codActividad;
     }
 
-    public void setActividad(Actividad actividad) {
-        this.actividad = actividad;
+    public void setCodActividad(Integer actividad) {
+        this.codActividad = actividad;
+    }
+
+    public String getCodTipoActividad() {
+        return codTipoActividad;
+    }
+
+    public void setCodTipoActividad(String codTipoActividad) {
+        this.codTipoActividad = codTipoActividad;
     }
 
     @Override

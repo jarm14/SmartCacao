@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Smart Cacao
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) TMET.
  */
 package ec.edu.espe.distribuidas.smartCacao.web;
 
@@ -20,7 +22,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author joel
+ * @author TMET
  */
 @Named
 @ViewScoped
@@ -92,8 +94,16 @@ public class EstacionBean extends BaseBean implements Serializable {
                 this.estacionService.crear(this.estacion);
                 FacesUtil.addMessageInfo("Se agrego la Estacion: " + this.estacion.getNombre());
             } else {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                this.estacionService.modificar(estacion);
+                FacesUtil.addMessageInfo("Se modific\u00f3 la Estacion con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
+=======
+>>>>>>> Stashed changes
                 this.estacionService.modificar(this.estacion);
                 FacesUtil.addMessageInfo("Se modific\u00f3 el Usuario con c\u00f3digo: " + this.estacion.getEstacionPK().getCodEstacion());
+>>>>>>> origin/master
             }
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");

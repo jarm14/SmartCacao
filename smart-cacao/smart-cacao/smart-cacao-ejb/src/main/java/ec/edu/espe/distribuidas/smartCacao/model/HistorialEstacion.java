@@ -12,9 +12,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,11 +45,11 @@ public class HistorialEstacion implements Serializable {
     @Column(name = "NOTA", length = 512)
     private String nota;
 
-    @JoinColumns({
-        @JoinColumn(name = "COD_ESTACION", referencedColumnName = "COD_ESTACION")
-        , @JoinColumn(name = "COD_MES", referencedColumnName = "COD_MES")})
-    @ManyToOne
-    private Estacion estacion;
+    @Column(name = "COD_ESTACION" ,length = 10)
+    private String codEstacion;
+    
+    @Column(name = "COD_MES")
+    private Integer codMes;
 
     public HistorialEstacion() {
     }
@@ -108,12 +105,20 @@ public class HistorialEstacion implements Serializable {
         this.nota = nota;
     }
 
-    public Estacion getEstacion() {
-        return estacion;
+    public String getCodEstacion() {
+        return codEstacion;
     }
 
-    public void setEstacion(Estacion estacion) {
-        this.estacion = estacion;
+    public void setCodEstacion(String estacion) {
+        this.codEstacion = estacion;
+    }
+
+    public Integer getCodMes() {
+        return codMes;
+    }
+
+    public void setCodMes(Integer codMes) {
+        this.codMes = codMes;
     }
 
     @Override

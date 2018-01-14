@@ -12,8 +12,6 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -37,13 +35,8 @@ public class Terreno implements Serializable {
     @Column(name = "LARGO", precision = 8, scale = 2, nullable = false)
     private BigDecimal largo;
 
-    @JoinColumn(name = "COD_TIPO_TERRENO", referencedColumnName = "COD_TIPO_TERRENO", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TipoTerreno tipoTerreno;
-
-    @JoinColumn(name = "COD_REGION", referencedColumnName = "COD_REGION")
-    @ManyToOne(optional = false)
-    private Region codRegion;
+    @Column(name = "COD_REGION", length = 10, nullable = false)
+    private String codRegion;
 
     public Terreno() {
     }
@@ -94,19 +87,11 @@ public class Terreno implements Serializable {
         this.largo = largo;
     }
 
-    public TipoTerreno getTipoTerreno() {
-        return tipoTerreno;
-    }
-
-    public void setTipoTerreno(TipoTerreno tipoTerreno) {
-        this.tipoTerreno = tipoTerreno;
-    }
-
-    public Region getCodRegion() {
+    public String getCodRegion() {
         return codRegion;
     }
 
-    public void setCodRegion(Region codRegion) {
+    public void setCodRegion(String codRegion) {
         this.codRegion = codRegion;
     }
 
