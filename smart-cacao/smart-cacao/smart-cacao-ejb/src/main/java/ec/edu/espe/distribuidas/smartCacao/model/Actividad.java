@@ -10,7 +10,6 @@ package ec.edu.espe.distribuidas.smartCacao.model;
 import ec.edu.espe.distribuidas.smartCacao.enums.ActividadEnum;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,7 +17,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,9 +42,6 @@ public class Actividad implements Serializable {
     
    @Enumerated(EnumType.STRING)
     private ActividadEnum estado;
-    
-    @OneToMany(mappedBy = "actividad")
-    private List<Alarma> alarmaList;
     
     @Column(name = "COD_COSECHA")
     private Integer codCosecha;
@@ -102,14 +97,6 @@ public class Actividad implements Serializable {
 
     public void setEstado(ActividadEnum estado) {
         this.estado = estado;
-    }
-
-    public List<Alarma> getAlarmaList() {
-        return alarmaList;
-    }
-
-    public void setAlarmaList(List<Alarma> alarmaList) {
-        this.alarmaList = alarmaList;
     }
 
     public Integer getCodCosecha() {

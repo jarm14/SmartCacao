@@ -14,9 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,11 +37,11 @@ public class Cosecha implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaPlantacion;
 
-    @JoinColumns({
-        @JoinColumn(name = "COD_TERRENO", referencedColumnName = "COD_TERRENO")
-        , @JoinColumn(name = "COD_TIPO_TERRENO", referencedColumnName = "COD_TIPO_TERRENO")})
-    @ManyToOne(optional = false)
-    private Terreno terreno;
+    @Column(name = "COD_TERRENO", nullable = false)
+    private Integer codTerreno;
+    
+    @Column(name = "COD_TIPO_TERRENO", length = 10, nullable = false)
+    private String codTipoTerreno;
 
     public Cosecha() {
     }
@@ -74,12 +71,20 @@ public class Cosecha implements Serializable {
         this.fechaPlantacion = fechaPlantacion;
     }
 
-    public Terreno getTerreno() {
-        return terreno;
+    public Integer getCodTerreno() {
+        return codTerreno;
     }
 
-    public void setTerreno(Terreno terreno) {
-        this.terreno = terreno;
+    public void setCodTerreno(Integer terreno) {
+        this.codTerreno = terreno;
+    }
+
+    public String getCodTipoTerreno() {
+        return codTipoTerreno;
+    }
+
+    public void setCodTipoTerreno(String codTipoTerreno) {
+        this.codTipoTerreno = codTipoTerreno;
     }
 
     @Override

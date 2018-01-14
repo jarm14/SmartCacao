@@ -10,18 +10,14 @@ package ec.edu.espe.distribuidas.smartCacao.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -42,18 +38,14 @@ public class Estadistica implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaUltimaCosecha;
 
-    @Basic(optional = false)
-    @Column(name = "NUMERO_ARBOLES", length = 5, nullable = false)
-    private int numeroArboles;
+    @Column(name = "NUMERO_ARBOLES", precision = 5, scale = 0, nullable = false)
+    private BigDecimal numeroArboles;
 
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "TOTAL_KILOS", precision = 8, scale = 2, nullable = false)
     private BigDecimal totalKilos;
 
-    @JoinColumn(name = "COD_COSECHA", referencedColumnName = "COD_COSECHA")
-    @ManyToOne
-    private Cosecha codCosecha;
+    @Column(name = "COD_COSECHA")
+    private Integer codCosecha;
 
     public Estadistica() {
     }
@@ -62,7 +54,7 @@ public class Estadistica implements Serializable {
         this.codigo = codEstadistica;
     }
 
-    public Estadistica(Integer codEstadistica, Date fechaUltimaCosecha, int numeroArboles, BigDecimal totalKilos) {
+    public Estadistica(Integer codEstadistica, Date fechaUltimaCosecha, BigDecimal numeroArboles, BigDecimal totalKilos) {
         this.codigo = codEstadistica;
         this.fechaUltimaCosecha = fechaUltimaCosecha;
         this.numeroArboles = numeroArboles;
@@ -85,11 +77,11 @@ public class Estadistica implements Serializable {
         this.fechaUltimaCosecha = fechaUltimaCosecha;
     }
 
-    public int getNumeroArboles() {
+    public BigDecimal getNumeroArboles() {
         return numeroArboles;
     }
 
-    public void setNumeroArboles(int numeroArboles) {
+    public void setNumeroArboles(BigDecimal numeroArboles) {
         this.numeroArboles = numeroArboles;
     }
 
@@ -101,11 +93,11 @@ public class Estadistica implements Serializable {
         this.totalKilos = totalKilos;
     }
 
-    public Cosecha getCodCosecha() {
+    public Integer getCodCosecha() {
         return codCosecha;
     }
 
-    public void setCodCosecha(Cosecha codCosecha) {
+    public void setCodCosecha(Integer codCosecha) {
         this.codCosecha = codCosecha;
     }
 

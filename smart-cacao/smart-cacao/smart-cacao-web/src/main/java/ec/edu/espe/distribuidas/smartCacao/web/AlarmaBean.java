@@ -87,7 +87,7 @@ public class AlarmaBean extends BaseBean implements Serializable {
         try {
 
             this.alarma.setCodTipoActividad(getNombreActividad(alarma));
-            
+
             if (this.enAgregar) {
                 this.alarmaService.crear(this.alarma);
                 FacesUtil.addMessageInfo("Se agrego la Alarma: " + this.alarma.getDescripcion());

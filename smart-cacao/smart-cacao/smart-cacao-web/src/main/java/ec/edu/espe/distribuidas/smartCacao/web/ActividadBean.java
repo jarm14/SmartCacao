@@ -29,7 +29,7 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class ActividadBean extends BaseBean implements Serializable {
-    
+
     private List<Actividad> actividades;
     private Actividad actividad;
     private Actividad actividadSel;
@@ -38,15 +38,16 @@ public class ActividadBean extends BaseBean implements Serializable {
     private ActividadPK actividadPK;
     private List<Cosecha> cosechas;
     private Cosecha cosecha;
-    
+
     @Inject
     private ActividadService actividadService;
-    
+
     @Inject
     private TipoActividadService tipoActividadService;
-    
-    @Inject CosechaService cosechaService;
-    
+
+    @Inject
+    CosechaService cosechaService;
+
     @PostConstruct
     public void init() {
         this.actividades = this.actividadService.obtenerTodos();
@@ -56,7 +57,7 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.cosecha = new Cosecha();
         this.cosechas = this.cosechaService.obtenerTodos();
     }
-    
+
     @Override
     public void agregar() {
         this.actividad = new Actividad();
@@ -67,7 +68,7 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.cosechas = this.cosechaService.obtenerTodos();
         super.agregar();
     }
-    
+
     public void cancelar() {
         super.reset();
         this.actividad = new Actividad();
@@ -75,7 +76,7 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.cosechas = this.cosechaService.obtenerTodos();
         this.actividadPK = new ActividadPK();
     }
-    
+
     @Override
     public void modificar() {
         this.actividad = new Actividad();
@@ -90,7 +91,7 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.actividad.setFechaUltimaEjecucion(this.actividadSel.getFechaUltimaEjecucion());
         this.actividad.setEstado(this.actividadSel.getEstado());
     }
-    
+
     public void eliminar() {
         try {
             this.actividadService.eliminar(this.actividadSel.getActividadPK());
@@ -101,11 +102,11 @@ public class ActividadBean extends BaseBean implements Serializable {
             FacesUtil.addMessageError(null, "No se puede eliminar el registro seleccionado. Verifique que no tenga informaci\u00f3n relacionada.");
         }
     }
-    
+
     public void guardar() {
         try {
             this.actividad.setActividadPK(actividadPK);
-            
+
             if (this.enAgregar) {
                 this.actividadService.crear(this.actividad);
                 FacesUtil.addMessageInfo("Se agrego la Actividad: " + getActividadNombre(this.actividad));
@@ -113,11 +114,11 @@ public class ActividadBean extends BaseBean implements Serializable {
                 this.actividadService.modificar(this.actividad);
                 FacesUtil.addMessageInfo("Se modific\u00f3 la Actividad con c\u00f3digo: " + this.actividad.getActividadPK().getCodActividad());
             }
-            
+
         } catch (Exception e) {
             FacesUtil.addMessageError(null, "Ocurrí\u00f3 un error al actualizar la informaci\u00f3n");
         }
-        
+
         super.reset();
         this.actividad = new Actividad();
         this.actividadPK = new ActividadPK();
@@ -126,15 +127,15 @@ public class ActividadBean extends BaseBean implements Serializable {
         this.actividades = this.actividadService.obtenerTodos();
         this.tiposActividad = this.tipoActividadService.obtenerTodos();
         this.cosechas = this.cosechaService.obtenerTodos();
-        
+
     }
-    
+
     public String getActividadNombre(Actividad actividad) {
         String nombre = "null";
         TipoActividad aux = new TipoActividad();
         for (int i = 0; i < tiposActividad.size(); i++) {
             aux = tiposActividad.get(i);
-            if (aux.getCodigo() == actividad.getActividadPK().getCodTipoActividad()) {
+            if (aux.getCodigo().equals(actividad.getActividadPK().getCodTipoActividad())) {
                 nombre = aux.getNombre();
             }
         }
@@ -192,6 +193,4 @@ public class ActividadBean extends BaseBean implements Serializable {
     public void setCosecha(Cosecha cosecha) {
         this.cosecha = cosecha;
     }
-
-    
 }

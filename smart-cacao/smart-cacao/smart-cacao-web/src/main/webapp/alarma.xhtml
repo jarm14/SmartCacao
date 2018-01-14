@@ -41,7 +41,7 @@ and open the template in the editor.
                             <f:selectItems var="actividad" value="#{alarmaBean.actividades}" itemLabel="#{actividad.actividadPK.codTipoActividad}" itemValue="#{actividad.actividadPK.codActividad}"/>
                         </p:selectOneMenu>
                         <p:outputLabel for="descripcion" value="Descripci&#243;n"/>
-                        <p:inputText id="descripcion" value="#{alarmaBean.alarma.descripcion}" disabled="true"/>
+                        <p:inputText id="descripcion" value="#{alarmaBean.alarma.descripcion}"/>
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{alarmaBean.guardar}" update="@form" />
                     <p:commandButton value="Cancelar" actionListener="#{alarmaBean.cancelar}" update="@form"/>
