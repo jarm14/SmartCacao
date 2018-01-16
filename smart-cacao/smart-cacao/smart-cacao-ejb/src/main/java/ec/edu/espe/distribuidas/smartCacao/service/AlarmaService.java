@@ -18,30 +18,29 @@ import javax.ejb.Stateless;
  *
  * @author TMET
  */
-
 @Stateless
 @LocalBean
 public class AlarmaService {
-    
+
     @EJB
     private AlarmaFacade alarmaFacade;
-    
+
     public List<Alarma> obtenerTodos() {
         return this.alarmaFacade.findAll();
     }
-    
+
     public Alarma obtenerPorCodigo(Integer codigo) {
         return this.alarmaFacade.find(codigo);
     }
-    
+
     public void crear(Alarma alarma) {
         this.alarmaFacade.create(alarma);
     }
-    
+
     public void modificar(Alarma alarma) {
         this.alarmaFacade.edit(alarma);
     }
-    
+
     public void eliminar(Integer codigo) {
         Alarma alarma = this.alarmaFacade.find(codigo);
         this.alarmaFacade.remove(alarma);
