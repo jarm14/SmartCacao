@@ -45,10 +45,6 @@ public class Actividad implements Serializable {
     
     @Column(name = "COD_COSECHA")
     private Integer codCosecha;
-    
-    @JoinColumn(name = "COD_TIPO_ACTIVIDAD", referencedColumnName = "COD_TIPO_ACTIVIDAD", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private TipoActividad tipoActividad;
 
     public Actividad() {
     }
@@ -105,14 +101,6 @@ public class Actividad implements Serializable {
 
     public void setCodCosecha(Integer codCosecha) {
         this.codCosecha = codCosecha;
-    }
-
-    public TipoActividad getTipoActividad() {
-        return tipoActividad;
-    }
-
-    public void setTipoActividad(TipoActividad tipoActividad) {
-        this.tipoActividad = tipoActividad;
     }
 
     @Override

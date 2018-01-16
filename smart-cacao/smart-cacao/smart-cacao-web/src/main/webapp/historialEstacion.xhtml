@@ -24,13 +24,19 @@ and open the template in the editor.
                         <h:outputText value="#{historialEstacionBean.getNombre(historialEstacion)}" />
                     </p:column>
                     <p:column headerText="A&#241;o">
-                        <h:outputText value="#{historialEstacion.anio}" />
+                        <h:outputText value="#{historialEstacion.anio}" styleClass="date">
+                            <f:convertDateTime pattern=" yyyy"/>
+                        </h:outputText>
                     </p:column>
                     <p:column headerText="Fecha Inicio">
-                        <h:outputText value="#{historialEstacion.fechaInicio}" />
+                        <h:outputText value="#{historialEstacion.fechaInicio}" styleClass="date">
+                            <f:convertDateTime pattern=" MM/d/yyyy" />
+                        </h:outputText>
                     </p:column>
                     <p:column headerText="Fecha Fin">
-                        <h:outputText value="#{historialEstacion.fechaFinalizacion}" />
+                        <h:outputText value="#{historialEstacion.fechaFinalizacion}" styleClass="date">
+                            <f:convertDateTime pattern=" MM/d/yyyy" />
+                        </h:outputText>
                     </p:column>
                     <p:column headerText="Nota">
                         <h:outputText value="#{historialEstacion.nota}" />

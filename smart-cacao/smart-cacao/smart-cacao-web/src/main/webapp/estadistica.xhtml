@@ -24,7 +24,9 @@ and open the template in the editor.
                         <h:outputText value="#{estadistica.codCosecha}" />
                     </p:column>
                     <p:column headerText="Fecha Ultima Cosecha">
-                        <h:outputText value="#{estadistica.fechaUltimaCosecha}" />
+                        <h:outputText value="#{estadistica.fechaUltimaCosecha}" styleClass="date">
+                             <f:convertDateTime pattern=" MM/d/yyyy" />
+                        </h:outputText>
                     </p:column>
                     <p:column headerText="N&#250;mero &#193;rboles">
                         <h:outputText value="#{estadistica.numeroArboles}" />

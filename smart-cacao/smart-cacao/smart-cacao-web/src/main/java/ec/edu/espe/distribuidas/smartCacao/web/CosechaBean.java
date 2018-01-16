@@ -90,6 +90,7 @@ public class CosechaBean extends BaseBean implements Serializable{
             if (this.enAgregar) {
                 this.cosechaService.crear(this.cosecha);
                 FacesUtil.addMessageInfo("Se agrego la Cosecha: " + this.cosecha.getCodigo());
+                this.cosechaService.generaActividad(this.cosecha);
             } else {
                 this.cosechaService.modificar(cosecha);
                 FacesUtil.addMessageInfo("Se modific\u00f3 la Cosecha con c\u00f3digo: " + this.cosecha.getCodigo());

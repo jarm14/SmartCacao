@@ -12,12 +12,12 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
-            <p:panel header="Cosecha" style="width: 50%; margin: auto;">
+            <p:panel header="Plantaci&#243;n" style="width: 50%; margin: auto;">
                 <p:dataTable var="cosecha" value="#{cosechaBean.cosechas}"
                              selectionMode="single" selection="#{cosechaBean.cosechaSel}" rowKey="#{cosecha.codigo}">
                     <p:ajax event="rowSelect" update="@form" />
                     <p:ajax event="rowUnselect" update="@form" />
-                    <p:column headerText="Codigo">
+                    <p:column headerText="C&#243;digo">
                         <h:outputText value="#{cosecha.codigo}" />
                     </p:column>
                     <p:column headerText="Terreno">
@@ -27,7 +27,9 @@ and open the template in the editor.
                         <h:outputText value="#{cosecha.codTipoTerreno}" />
                     </p:column>
                     <p:column headerText="Fecha Plantaci&#243;n">
-                        <h:outputText value="#{cosecha.fechaPlantacion}" />
+                        <h:outputText value="#{cosecha.fechaPlantacion}" styleClass="date">
+                             <f:convertDateTime pattern=" MM/d/yyyy" />
+                        </h:outputText>
                     </p:column>
                 </p:dataTable>
                 <p:commandButton value="Agregar" actionListener="#{cosechaBean.agregar()}" update="@form"/>

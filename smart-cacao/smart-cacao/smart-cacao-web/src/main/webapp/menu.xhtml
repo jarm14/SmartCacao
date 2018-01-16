@@ -13,17 +13,21 @@ and open the template in the editor.
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
             <p:panel header="Calendario" style="width: 50%; margin: auto;">
-                <p:dataTable var="calendario" value="#{actividadBean.actividades}">
+                <p:dataTable var="calendario" value="#{actividadBean.actividadDia}"
+                             selectionMode="single" selection="#{actividadBean.actividadSel}" rowKey="#{calendario.actividadPK}">
+                    <p:ajax event="rowSelect" update="@form" />
+                    <p:ajax event="rowUnselect" update="@form" />
                     <p:column headerText="Codigo">
                         <h:outputText value="#{calendario.actividadPK.codActividad}" />
                     </p:column>
                     <p:column headerText="Tipo Actividad">
-                        <h:outputText value="#{actividadBean.getActividadNombre(actividad)}"/>
+                        <h:outputText value="#{actividadBean.getActividadNombre(calendario)}"/>
                     </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText value="#{calendario.nota}"/>
                     </p:column>
                 </p:dataTable>
+                <p:commandButton value="Realizar" actionListener="#{actividadBean.realizarActividad()}" update="@form" disabled="#{actividadBean.actividadSel eq null}"/>
             </p:panel>
         </ui:define>
     </ui:composition>

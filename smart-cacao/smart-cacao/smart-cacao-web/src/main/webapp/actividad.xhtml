@@ -26,9 +26,6 @@ and open the template in the editor.
                     <p:column headerText="Codigo Cosecha">
                         <h:outputText value="#{actividad.codCosecha}"/>
                     </p:column>
-                    <p:column headerText="Fecha Ultima Ejecucion">
-                        <h:outputText value="#{actividad.fechaUltimaEjecucion}" />
-                    </p:column>
                     <p:column headerText="Estado">
                         <h:outputText value="#{actividad.estado}" />
                     </p:column>
@@ -51,15 +48,18 @@ and open the template in the editor.
                             <f:selectItems var="tipoActividad" value="#{actividadBean.tiposActividad}" itemLabel="#{tipoActividad.nombre}" itemValue="#{tipoActividad.codigo}"/>
                         </p:selectOneMenu>
                         <p:outputLabel for="codCosechaCmb" value="Codigo Cosecha" />
-                        <p:selectOneMenu id="codCosechaCmb" value="#{actividadBean.actividad.codCosecha}" style="width:175px">
+                        <p:selectOneMenu id="codCosechaCmb" value="#{actividadBean.actividad.codCosecha}" style="width:175px" >
                             <f:selectItems var="cosecha" value="#{actividadBean.cosechas}" itemLabel="#{cosecha.fechaPlantacion}" itemValue="#{cosecha.codigo}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel for="fecha" value="Fecha Ultima Ejecucion" />
-                        <p:inputText id="fecha" value="#{actividadBean.actividad.fechaUltimaEjecucion}"/>
-                        <p:outputLabel for="estado" value="Estado" />
-                        <p:inputText id="estado" value="#{actividadBean.actividad.estado}" />
+                        <p:outputLabel for="fecha" value="Fecha realizar" />
+                        <p:calendar id="fecha" value="#{actividadBean.actividad.fechaUltimaEjecucion}"/>
+                        <p:outputLabel for="estadoActividadCmb" value="Estado"/>
+                        <p:selectOneMenu id="estadoActividadCmb" value="#{actividadBean.actividad.estado}" style="width:175px">
+                            <f:selectItem itemLabel="No Realizado" itemValue="NRE"/>
+                            <f:selectItem itemLabel="Realizado" itemValue="REA"/>
+                        </p:selectOneMenu>
                         <p:outputLabel for="nota" value="Nota" />
-                        <p:inputText id="nota" value="#{actividadBean.actividad.nota}"/>
+                        <p:inputText id="nota" value="#{actividadBean.actividad.nota}" />
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{actividadBean.guardar}" update="@form"/>
                     <p:commandButton value="Cancelar" actionListener="#{actividadBean.cancelar}" update="@form"/>

@@ -8,6 +8,7 @@
 package ec.edu.espe.distribuidas.smartCacao.dao;
 
 import ec.edu.espe.distribuidas.smartCacao.model.Actividad;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -39,6 +40,12 @@ public class ActividadFacade extends AbstractFacade<Actividad> {
         Query qry = this.em.createQuery("SELECT obj FROM Actividad obj WHERE obj.actividadPK.codTipoActividad = ?1 AND obj.codCosecha = ?2");
         qry.setParameter(1, codTipoActividad);
         qry.setParameter(2, codCosecha);
+        return qry.getResultList();
+    }
+
+    public List<Actividad> getByDate(Date date) {
+        Query qry = this.em.createQuery("SELECT obj FROM Actividad obj WHERE obj.fechaUltimaEjecucion = ?1 AND obj.estado LIKE 'NRE'");
+        qry.setParameter(1,date);
         return qry.getResultList();
     }
 }

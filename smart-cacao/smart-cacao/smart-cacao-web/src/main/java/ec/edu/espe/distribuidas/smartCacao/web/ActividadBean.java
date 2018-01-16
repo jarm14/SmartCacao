@@ -7,6 +7,7 @@
  */
 package ec.edu.espe.distribuidas.smartCacao.web;
 
+import ec.edu.espe.distribuidas.smartCacao.enums.ActividadEnum;
 import ec.edu.espe.distribuidas.smartCacao.model.Actividad;
 import ec.edu.espe.distribuidas.smartCacao.model.ActividadPK;
 import ec.edu.espe.distribuidas.smartCacao.model.Cosecha;
@@ -16,6 +17,8 @@ import ec.edu.espe.distribuidas.smartCacao.service.CosechaService;
 import ec.edu.espe.distribuidas.smartCacao.service.TipoActividadService;
 import ec.edu.espe.distribuidas.smartCacao.web.util.FacesUtil;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -79,6 +82,7 @@ public class ActividadBean extends BaseBean implements Serializable {
 
     @Override
     public void modificar() {
+        super.modificar();
         this.actividad = new Actividad();
         this.actividadPK = new ActividadPK();
         this.tipoActividad = new TipoActividad();
@@ -140,6 +144,23 @@ public class ActividadBean extends BaseBean implements Serializable {
             }
         }
         return nombre;
+    }
+
+    public List<Actividad> getActividadDia() {
+        Date cal = Calendar.getInstance().getTime();
+        this.actividades = this.actividadService.obtenerPorFecha(cal);
+        return actividades;
+    }
+
+    public void realizarActividad() {
+
+        this.actividad.setActividadPK(actividadSel.getActividadPK());
+        this.actividad.setCodCosecha(actividadSel.getCodCosecha());
+        this.actividad.setEstado(actividadSel.getEstado());
+        this.actividad.setFechaUltimaEjecucion(this.actividadSel.getFechaUltimaEjecucion());
+        this.actividad.setNota(this.actividadSel.getNota());
+        this.actividadService.realizaActividad(actividad);
+        this.actividadSel = null;
     }
 
     public Actividad getActividad() {
