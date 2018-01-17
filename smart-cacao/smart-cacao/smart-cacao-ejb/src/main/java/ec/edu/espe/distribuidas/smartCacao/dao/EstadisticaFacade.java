@@ -8,10 +8,12 @@
 package ec.edu.espe.distribuidas.smartCacao.dao;
 
 import ec.edu.espe.distribuidas.smartCacao.model.Estadistica;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -31,6 +33,12 @@ public class EstadisticaFacade extends AbstractFacade<Estadistica> {
 
     public EstadisticaFacade() {
         super(Estadistica.class);
+    }
+    
+     public List<Estadistica> findByCosecha(Integer codCosecha) {
+        Query qry = this.em.createQuery("SELECT obj FROM Estadistica obj WHERE obj.codCosecha = ?1");
+        qry.setParameter(1, codCosecha);
+        return qry.getResultList();
     }
     
 }

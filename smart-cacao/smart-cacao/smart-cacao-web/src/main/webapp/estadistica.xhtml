@@ -13,6 +13,15 @@ and open the template in the editor.
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
             <p:panel header="Estadistica" style="width: 50%; margin: auto;">
+                <p:panel id="buscPnl" header="Busqueda">
+                    <p:panelGrid columns="3">
+                        <p:outputLabel for="estadisticaCmb" value="Seleccione Cosecha:" />
+                        <p:selectOneMenu id="estadisticaCmb" value="#{estadisticaBean.tipoCosechaBusqueda}">
+                            <f:selectItems var="cosechas" value="#{estadisticaBean.cosechas}" itemLabel="#{cosechas.fechaPlantacion}" itemValue="#{cosechas.codigo}" />
+                        </p:selectOneMenu>
+                        <p:commandButton id="buscarCmd" value="Buscar" actionListener="#{estadisticaBean.buscar()}" update="@form" />
+                    </p:panelGrid>
+                </p:panel>   
                 <p:dataTable var="estadistica" value="#{estadisticaBean.estadisticas}"
                              selectionMode="single" selection="#{estadisticaBean.estadisticaSel}" rowKey="#{estadistica.codigo}">
                     <p:ajax event="rowSelect" update="@form" />
@@ -25,7 +34,7 @@ and open the template in the editor.
                     </p:column>
                     <p:column headerText="Fecha Ultima Cosecha">
                         <h:outputText value="#{estadistica.fechaUltimaCosecha}" styleClass="date">
-                             <f:convertDateTime pattern=" MM/d/yyyy" />
+                            <f:convertDateTime pattern=" MM/d/yyyy" />
                         </h:outputText>
                     </p:column>
                     <p:column headerText="N&#250;mero &#193;rboles">
@@ -59,6 +68,12 @@ and open the template in the editor.
                     <p:commandButton value="Cancelar" actionListener="#{estadisticaBean.cancelar}" update="@form"/>
                 </p:panel>
             </p:panel>
+            <p:spacer height="10px"/>
+            <p:panel header="Estimación" style="width: 50%; margin: auto;">
+                <p:outputLabel value="Se estiman #{estadisticaBean.promedioCosecha} kilos para la siguiente cosecha"/>
+            </p:panel>
+
+
             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                 <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />

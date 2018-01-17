@@ -13,6 +13,7 @@ import ec.edu.espe.distribuidas.smartCacao.service.CosechaService;
 import ec.edu.espe.distribuidas.smartCacao.service.EstadisticaService;
 import ec.edu.espe.distribuidas.smartCacao.web.util.FacesUtil;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -27,11 +28,13 @@ import javax.inject.Named;
 @ViewScoped
 public class EstadisticaBean extends BaseBean implements Serializable {
     
+    private String tipoCosechaBusqueda;
     private List<Estadistica> estadisticas;
     private Estadistica estadistica;
     private Estadistica estadisticaSel;
     private List<Cosecha> cosechas;
     private Cosecha cosecha;
+    private String promedioCosecha;
     
     @Inject
     private EstadisticaService estadisticaService;
@@ -42,7 +45,7 @@ public class EstadisticaBean extends BaseBean implements Serializable {
     @PostConstruct
     public void init() {
         this.estadistica = new Estadistica();
-        this.estadisticas = this.estadisticaService.obtenerTodos();
+        //this.estadisticas = this.estadisticaService.obtenerTodos();
         this.cosecha = new Cosecha();
         this.cosechas = this.cosechaService.obtenerTodos();
     }
@@ -66,7 +69,33 @@ public class EstadisticaBean extends BaseBean implements Serializable {
         this.estadistica.setNumeroArboles(this.estadisticaSel.getNumeroArboles());
         this.estadistica.setTotalKilos(this.estadisticaSel.getTotalKilos());
     }
+    
+    public void buscar() {
 
+        this.estadisticas = this.estadisticaService.obtenerPorCosecha(Integer.parseInt(this.tipoCosechaBusqueda));
+        Promedio();
+    }
+
+    public void Promedio(){
+    
+      
+        double contador= 0.0;  //este contador llevara la suma de todos los valores 
+        
+        String kilos;
+        
+        for (int i = 0; i < estadisticas.size(); i++) {
+
+            kilos = estadisticas.get(i).getTotalKilos().toString();
+            
+            contador = contador + Double.parseDouble(kilos);
+        }
+        
+        contador = contador / estadisticas.size();
+        
+        this.promedioCosecha = String.valueOf(contador);
+        
+    }    
+    
     public void eliminar() {
         try {
             this.estadisticaService.eliminar(this.estadisticaSel.getCodigo());
@@ -132,8 +161,26 @@ public class EstadisticaBean extends BaseBean implements Serializable {
     public Cosecha getCosecha() {
         return cosecha;
     }
-
+    
     public void setCosecha(Cosecha cosecha) {
         this.cosecha = cosecha;
     }
+
+    public String getTipoCosechaBusqueda() {
+        return tipoCosechaBusqueda;
+    }
+
+    public void setTipoCosechaBusqueda(String tipoCosechaBusqueda) {
+        this.tipoCosechaBusqueda = tipoCosechaBusqueda;
+    }
+
+    public String getPromedioCosecha() {
+        return promedioCosecha;
+    }
+
+    public void setPromedioCosecha(String promedioCosecha) {
+        this.promedioCosecha = promedioCosecha;
+    }
+    
+    
 }

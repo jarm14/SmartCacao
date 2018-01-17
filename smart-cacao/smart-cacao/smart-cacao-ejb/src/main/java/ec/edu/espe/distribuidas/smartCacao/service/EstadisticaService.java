@@ -33,6 +33,11 @@ public class EstadisticaService {
         return this.estadisticaFacade.find(codigo);
     }
     
+    public List<Estadistica> obtenerPorCosecha(Integer codigo)
+    {
+        return this.estadisticaFacade.findByCosecha(codigo);
+    }
+    
     public void crear(Estadistica estadistica)
     {
         this.estadisticaFacade.create(estadistica);
