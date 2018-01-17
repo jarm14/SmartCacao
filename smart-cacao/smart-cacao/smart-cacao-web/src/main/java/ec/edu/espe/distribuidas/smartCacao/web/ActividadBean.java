@@ -7,7 +7,6 @@
  */
 package ec.edu.espe.distribuidas.smartCacao.web;
 
-import ec.edu.espe.distribuidas.smartCacao.enums.ActividadEnum;
 import ec.edu.espe.distribuidas.smartCacao.model.Actividad;
 import ec.edu.espe.distribuidas.smartCacao.model.ActividadPK;
 import ec.edu.espe.distribuidas.smartCacao.model.Cosecha;
