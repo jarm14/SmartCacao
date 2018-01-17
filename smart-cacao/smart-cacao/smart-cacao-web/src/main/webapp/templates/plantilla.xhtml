@@ -5,45 +5,72 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-          
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    
-    
-    <style type="text/css">
-        body {background:url("images/back.jpg")right no-repeat fixed #fff;}
-    </style>
-     
-    
-    <h:head>
-        <title>SMART CACAO</title>
-        
-        <h:form>  
-    <p:growl id="messages"/>
- 
-    <p:menubar>
 
-        <p:menuitem style="margin-right: 10px">
-                <h:graphicImage value="/images/banner.png" style="margin-right:10px; position: relative;" width="200px" height="70px"/>
-        </p:menuitem>
-        
-        
-        <p:menuitem  style="margin-right:10px" value="Home" icon="ui-icon-home"/>
-        <p:menuitem  style="margin-right:10px" value="Contact" icon="ui-icon-contact"/>
-        
-    </p:menubar>
-</h:form>
-        
-      
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:head>
+        <style type="text/css">
+            body {background:url("images/back.jpg")right top repeat-x fixed #fff;}
+        </style>
+        <title>SMART CACAO</title>
     </h:head>
-    
-    
+
+    <p:growl id="messages"/>
+
+
     <h:body> 
-        
+
         <div id="page">
-            <div class="header">
+
+            <div id="top">
+                <p:panelGrid id="pgIcons" style="width: 100%;">
+                    <p:row>
+                        <p:column style="text-align: center; ">
+                            <h:graphicImage value = "/images/banner.png" styleClass="logo"/>                        
+                        </p:column>
+
+                    </p:row>
+                </p:panelGrid>
+                <h:form> 
+
+                    <p:menubar>
+                        <p:menuitem  value="Home" icon="ui-icon-home" action="menu"/>
+                        <p:submenu label="Actividad" icon="ui-icon-home">
+                            <p:menuitem  value="Lista de Actividades"  action="actividad"/>
+                            <p:menuitem  value="Tipos de Actividades" action="tipoActividad"/>
+                        </p:submenu>
+                        <p:submenu label="Terreno" icon="ui-icon-home">
+                            <p:menuitem  value="Lista de Terrenos"  action="terreno"/>
+                            <p:menuitem  value="Tipos de Terrenos" action="tipoTerreno"/>
+                            <p:menuitem  value="Región de Terrenos" action="region"/>
+                        </p:submenu>
+                        <p:submenu label="Cosecha" icon="ui-icon-home">
+                            <p:submenu label="Cosechas">
+                                <p:menuitem  value="Lista de Cosechas"  action="cosecha"/>
+                                <p:menuitem  value="Estadisticas" action="estadistica"/>
+                            </p:submenu>              
+                            <p:menuitem  value="Alarmas" action="alarma"/>
+                        </p:submenu>
+                        <p:submenu label="Estacion" icon="ui-icon-home">
+                            <p:menuitem  value="Lista de Estación"  action="estacion"/>
+                            <p:menuitem  value="Historial de Estación" action="historialEstacion"/>
+                            <p:menuitem  value="Meses" action="mes"/>
+                        </p:submenu>
+                        <p:submenu label="Gestión de Usuarios" icon="ui-icon-home">
+                            <p:menuitem  value="Usuarios"  action="usuario"/>
+                            <p:menuitem  value="Tipos de Usuarios" action="tipoUsuario"/>
+                        </p:submenu>
+
+                        <f:facet name="options">
+                            <p:menuitem value="Bienvenido: #{usuarioSesionBean.nombre}" url="#"/>
+                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                        </f:facet>
+                        
+                    </p:menubar>
+                </h:form>
             </div>
-            
+
             <div id="content">
                 <h:form>
                     <p:growl id="growl" showDetail="true" life="3000"  />
@@ -53,20 +80,17 @@
                     <p>&nbsp;</p>
                 </h:form>
             </div>
+
+            <div id="bottom">
+                <p:panel style="border: black 3px solid;text-align: center;">
+                    &copy;Smart Cacao <br/>Universidad de las Fuerzas Armadas ESPE
+                    <br/>Tutor: Henry Ramiro Coral Coral <br/>NRC: 2434
+
+                </p:panel>
+            </div>
+
         </div>
-        
 
-         <p:toolbar id="tb">
-  
-             <f:facet name="left" >
-                 
-                 <h5>&copy;Smart Cacao <br/>Universidad de las Fuerzas Armadas ESPE
-                        <br/>Tutor: Henry Ramiro Coral Coral <br/>NRC: 2434</h5>
-
-            </f:facet>
-             
-        </p:toolbar>
-    
     </h:body>
-    
+
 </html>

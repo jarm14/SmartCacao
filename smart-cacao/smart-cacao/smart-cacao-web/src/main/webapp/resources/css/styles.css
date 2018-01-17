@@ -124,4 +124,11 @@
   color: #ffffff;
 }
 
-.body {	color:#333; font:300 15px/15px Roboto,Arial,Helvetica;background:url(../images/back.jpg) right no-repeat fixed #fff; -webkit-font-smoothing:antialiased;}
+.body {	
+    color:#333; 
+    font:300 15px/15px Roboto,Arial,Helvetica;
+    background-image: url(images/banner.jpg) ;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    -webkit-font-smoothing:antialiased;
+}
