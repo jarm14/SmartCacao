@@ -38,19 +38,15 @@
                         <p:menuitem  value="Inicio" icon="ui-icon-home" action="menu"/>
                         <p:submenu label="Actividad" icon="ui-icon-home">
                             <p:menuitem  value="Lista de Actividades"  action="actividad"/>
-                            <p:menuitem  value="Tipos de Actividades" action="tipoActividad"/>
                         </p:submenu>
                         <p:submenu label="Terreno" icon="ui-icon-home">
                             <p:menuitem  value="Lista de Terrenos"  action="terreno"/>
                             <p:menuitem  value="Tipos de Terrenos" action="tipoTerreno"/>
                             <p:menuitem  value="Región de Terrenos" action="region"/>
                         </p:submenu>
-                        <p:submenu label="Cosecha" icon="ui-icon-home">
-                            <p:submenu label="Cosechas">
-                                <p:menuitem  value="Lista de Cosechas"  action="cosecha"/>
-                                <p:menuitem  value="Estadisticas" action="estadistica"/>
-                            </p:submenu>              
-                            <p:menuitem  value="Alarmas" action="alarma"/>
+                        <p:submenu label="Plantaciones" icon="ui-icon-home">
+                            <p:menuitem  value="Lista de Plantaciones"  action="cosecha"/>
+                            <p:menuitem  value="Estadisticas" action="estadistica"/>
                         </p:submenu>
                         <p:submenu label="Estacion" icon="ui-icon-home">
                             <p:menuitem  value="Lista de Estación"  action="estacion"/>
@@ -64,9 +60,9 @@
 
                         <f:facet name="options">
                             <p:menuitem value="Bienvenido: #{usuarioSesionBean.nombre}" url="#"/>
-                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                            <p:commandButton value="Logout" action="#{indexBean.logout()}" icon="ui-icon-extlink"/>
                         </f:facet>
-                        
+
                     </p:menubar>
                 </h:form>
             </div>
