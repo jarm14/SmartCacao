@@ -17,7 +17,7 @@ and open the template in the editor.
                     <p:panelGrid columns="3">
                         <p:outputLabel for="estadisticaCmb" value="Seleccione Cosecha:" />
                         <p:selectOneMenu id="estadisticaCmb" value="#{estadisticaBean.tipoCosechaBusqueda}">
-                            <f:selectItems var="cosechas" value="#{estadisticaBean.cosechas}" itemLabel="#{cosechas.fechaPlantacion}" itemValue="#{cosechas.codigo}" />
+                            <f:selectItems var="cosechas" value="#{estadisticaBean.cosechas}" itemLabel="#{cosechas.codigo}" itemValue="#{cosechas.codigo}" />
                         </p:selectOneMenu>
                         <p:commandButton id="buscarCmd" value="Buscar" actionListener="#{estadisticaBean.buscar()}" update="@form" />
                     </p:panelGrid>
@@ -29,7 +29,7 @@ and open the template in the editor.
                     <p:column headerText="Codigo">
                         <h:outputText value="#{estadistica.codigo}" />
                     </p:column>
-                    <p:column headerText="Codigo Cosecha">
+                    <p:column headerText="Codigo Plantaci&#243;n">
                         <h:outputText value="#{estadistica.codCosecha}" />
                     </p:column>
                     <p:column headerText="Fecha Ultima Cosecha">
